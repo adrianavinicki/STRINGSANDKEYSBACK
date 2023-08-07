@@ -4,7 +4,7 @@ const getProductByIdHandler = async (req, res) => {
     const {id} = req.params;
 
     try {
-        const wantedProduct = getProductById(id);
+        const wantedProduct = await getProductById(id);
 
         if(!wantedProduct) throw new Error('Lo siento no existe un producto con ese id')
         res.status(200).json(wantedProduct)

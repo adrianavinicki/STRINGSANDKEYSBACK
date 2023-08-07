@@ -19,7 +19,7 @@ const loadProductsInDB = async (req, res, next) => {
 };
 
 const getProductById = async (id) => {
-  const product = await Product.findByPK(id);
+  const product = await Product.findByPk(id);
   return product;
 };
 

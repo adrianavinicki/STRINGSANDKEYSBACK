@@ -2,7 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-//const routes = require("./routes/index.js");
+const routes = require("./routes/Index");
 require("./db.js");
 const cors = require("cors");
 //cambio para aprobar bloqueo de main
@@ -30,7 +30,7 @@ server.use((req, res, next) => {
   next();
 });
 
-//server.use("/", routes); Descomentar cuando tengamos rutas
+server.use("/", routes); /*Descomentar cuando tengamos rutas*/
 
 // Error catching endware.
 server.use((err, req, res, next) => {
