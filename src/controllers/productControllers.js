@@ -1,5 +1,7 @@
 const { Product } = require("../db");
 const listProducts = require("../data/MusicProducts.js");
+require("dotenv").config();
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
 //!-------------
 
@@ -18,6 +20,13 @@ const loadProductsInDB = async (req, res, next) => {
   }
 };
 
+const getProductById = async (id) => {
+  const product = await Product.findByPk(id);
+  return product;
+};
+
 module.exports = {
+  getProductById,
   loadProductsInDB,
+  getProducts,
 };
