@@ -1,10 +1,12 @@
 const {
   getProducts,
   getProductById,
+  getProductByName,
 } = require("../controllers/productControllers");
 
 const getAllProducts = async (req, res) => {
-  const response = await getProducts();
+  const { name } = req.query;
+  const response = name ? await getProductByName(name) : await getProducts();
 
   try {
     res.status(200).json(response);
