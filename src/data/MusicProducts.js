@@ -273,7 +273,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1023_z7nkgm.jpg",
         product_status: true,
         quantity: 2000,
-        price: 476814,
+        price: 346814,
       },
       {
         id: 1024,
@@ -565,7 +565,7 @@ const listProducts = [
       },
       {
         id: 1048,
-        name: "Caja Potenciada 1 x 12″ + Driver 1,4″- 2.000 Watts Respuesta Plana Headrush FRFR112",
+        name: "Caja Potenciada Amplificador 1 x 12″ + Driver 1,4″- 2.000 Watts Respuesta Plana Headrush FRFR112",
         brand: "Headrush",
         category: "Amplificadores",
         description: "Una caja de respuesta plana especialmente diseñada para amplificar la ultima generación de modeladores digitales.",
@@ -621,7 +621,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1052_dvhx0o.jpg",
         product_status: true,
         quantity: 2000,
-        price: 351655,
+        price: 349655,
       },
       {
         id: 1053,
