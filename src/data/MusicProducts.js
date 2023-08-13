@@ -1,7 +1,7 @@
 const listProducts = [
     {
       id: 1001,
-      name: "Afinador Digital Cromático Pinza Korg Griptune",
+      name: "Afinador Digital Cromatico Pinza Korg Griptune",
       brand: "Korg",
       category: "Afinadores",
       description: "El clip que sujeta el afinador al clavijero de la guitarra utiliza un mecanismo de pinza que puede ser colocado fácilmente. Esto te permite afinar de manera natural sin molestarte al interpretar. Puesto que el clip puede abrirse en un rango de 14-22 mm (0.55”– 0,87”), se puede fijar a una amplia variedad de instrumentos, desde guitarras eléctricas hasta guitarras clásicas.",
@@ -13,7 +13,7 @@ const listProducts = [
     },
     {
         id: 1002,
-        name: "Afinador Digital Cromático Pinza Korg PitchCrow-G",
+        name: "Afinador Digital Cromatico Pinza Korg PitchCrow-G",
         brand: "Korg",
         category: "Afinadores",
         description: "El PitchCrow-G es el más compacto de todos los afinadores con clip y está completamente equipado. Su diseño extraplano incluye todo lo necesario para afinar con precisión y rapidez, y es aproximadamente un 20% más pequeño y más ligero que los modelos anteriores de KORG.",
@@ -25,7 +25,7 @@ const listProducts = [
       },
       {
         id: 1003,
-        name: "Afinador Digital Cromático Pinza Korg PitchCrow-G",
+        name: "Afinador Digital Cromatico Pinza Korg PitchCrow-G",
         brand: "Korg",
         category: "Afinadores",
         description: "Escala: 12 notas de igual temperamento",
@@ -37,7 +37,7 @@ const listProducts = [
       },
       {
         id: 1004,
-        name: "Afinador Digital Cromático Pinza Korg PitchCrow-G",
+        name: "Afinador Digital Cromatico Pinza Korg PitchCrow-G",
         brand: "Korg",
         category: "Afinadores",
         description: "El Rimpitch-C2 es un afinador que se coloca en el interior de la boca de la guitarra. El diseño extremadamente delgado y compacto del sintonizador permite que se instale de manera discreta, y dado que el medidor de afinación se encuentra dentro de su campo de visión natural, puede mirar casualmente el medidor de afinación mientras toca. Es una opción ideal para cualquier guitarrista acústico que no quiera distraerse de su interpretación con un afinador de clip.",
@@ -61,7 +61,7 @@ const listProducts = [
       },
       {
         id: 1006,
-        name: "Correa Acordeón Ecocuero Simil Carpincho Tijuana Ac 350-3",
+        name: "Correa Acordeon Ecocuero Simil Carpincho Tijuana Ac 350-3",
         brand: "Tijuana",
         category: "Correas",
         description: "Correa para Acordeón (Fina)",
@@ -85,7 +85,7 @@ const listProducts = [
       },
       {
         id: 1008,
-        name: "Funda Guitarra Criolla Clásica Tela De Avión Linea Amarilla Tiver 010CR",
+        name: "Funda Guitarra Criolla Clasica Tela De Avion Linea Amarilla Tiver 010CR",
         brand: "Tiver",
         category: "Fundas",
         description: "Funda Para Guitarra Criolla/Clásica",
@@ -109,7 +109,7 @@ const listProducts = [
       },
       {
         id: 1010,
-        name: "Funda Bandoneón Mochila Super Acolchada Kemuel",
+        name: "Funda Bandoneon Mochila Super Acolchada Kemuel",
         brand: "Kemuel",
         category: "Fundas",
         description: "Funda de Bandoneon Tipo Warwick",
@@ -121,7 +121,7 @@ const listProducts = [
       },
       {
         id: 1011,
-        name: "Funda Guitarra Eléctrica Acolchada Linea Roja Tiver",
+        name: "Funda Guitarra Electrica Acolchada Linea Roja Tiver",
         brand: "Tiver",
         category: "Fundas",
         description: "Funda Para Guitarra Eléctrica.",
@@ -133,7 +133,7 @@ const listProducts = [
       },
       {
         id: 1012,
-        name: "Porta Púa Jim Dunlop 5000 BK",
+        name: "Porta Pua Jim Dunlop 5000 BK",
         brand: "Jim Dunlop",
         category: "Púas",
         description: "Con cinta doble faz para correcta adhesión sin dañar tu instrumento",
@@ -145,7 +145,7 @@ const listProducts = [
       },
       {
         id: 1013,
-        name: "Púas Jim Dunlop John Petrucci Firmada Jazz III Ultex 1.5",
+        name: "Puas Jim Dunlop John Petrucci Firmada Jazz III Ultex 1.5",
         brand: "Jim Dunlop",
         category: "Púas",
         description: "Diseñado según las propias especificaciones de la leyenda del rock progresivo, el John Petrucci Jazz III de 1.5 mm está hecho de Ultex y presenta un agarre con el logotipo JP elevado y una punta pulida pulida.",
@@ -157,7 +157,7 @@ const listProducts = [
       },
       {
         id: 1014,
-        name: "Púas Triangulares 0.73 DAndrea RD355 .73MD Pack X 3 Unidades",
+        name: "Puas Triangulares 0.73 DAndrea RD355 .73MD Pack X 3 Unidades",
         brand: "DAndrea",
         category: "Púas",
         description: "Pack de Púas Triangulares",
@@ -241,7 +241,7 @@ const listProducts = [
       },
       {
         id: 1021,
-        name: "Piano Eléctrico 88 Teclas Sensitivo + Fuente NUX NPK-10",
+        name: "Piano Electrico 88 Teclas Sensitivo + Fuente NUX NPK-10",
         brand: "NUX",
         category: "Teclados",
         description: "Para proporcionar la sensación de piano más auténtica, NUX NPK-10 está equipado con funciones de teclado avanzadas: los sensores triples superiores WKJ-03, acción de martillo escalonada, teclas de escape y tacto de marfil, y 5 tipos de sensibilidad táctil para adaptarse a diferentes estilos.",
@@ -277,7 +277,7 @@ const listProducts = [
       },
       {
         id: 1024,
-        name: "Soporte Mesa Tijera Doble Caño Teclado Órgano Piano Suant",
+        name: "Soporte Mesa Tijera Doble Caño Teclado Organo Piano Suant",
         brand: "Suant",
         category: "Teclados",
         description: "Recomendado para órganos, sintetizadores, teclados y pianos.",
@@ -301,7 +301,7 @@ const listProducts = [
       },
       {
         id: 1026,
-        name: "Guitarra Eléctrica Les Paul SX EE3-BK",
+        name: "Guitarra Electrica Les Paul SX EE3-BK",
         brand: "SX",
         category: "Instrumentos de Cuerda",
         description: "Guitarra Eléctrica SX EE3-BK Tipo LP Doble Humbucker",
@@ -313,7 +313,7 @@ const listProducts = [
       },
       {
         id: 1027,
-        name: "Guitarra Eléctrica Les Paul SX EF3D-CS",
+        name: "Guitarra Electrica Les Paul SX EF3D-CS",
         brand: "SX",
         category: "Instrumentos de Cuerda",
         description: "El más alto nivel de las guitarras SX. Madera tonal tradicional para el mástil y el cuerpo con un atractivo aspecto de los años 70.",
@@ -325,7 +325,7 @@ const listProducts = [
       },
       {
         id: 1028,
-        name: "Guitarra Eléctrica Stratocaster Cort",
+        name: "Guitarra Electrica Stratocaster Cort",
         brand: "Cort",
         category: "Instrumentos de Cuerda",
         description: "La Serie G representa una evolución lógica del término “vintage”. Es moderno pero conserva las características familiares del diseño clásico de doble cutaway de una manera estéticamente elegante.",
@@ -337,7 +337,7 @@ const listProducts = [
       },
       {
         id: 1029,
-        name: "Guitarra Eléctrica Stratocaster Leonard BK",
+        name: "Guitarra Electrica Stratocaster Leonard BK",
         brand: "Leonard",
         category: "Instrumentos de Cuerda",
         description: "La Leonard Stratocaster es una guitarra con una excelente relación calidad-precio, ideal para dar los primeros pasos como guitarrista para llevar a los ensayos, simple pero efectiva al momento de arrancar a tocar, de ensayar.",
@@ -349,7 +349,7 @@ const listProducts = [
       },
       {
         id: 1030,
-        name: "Guitarra eléctrica estilo SG TEXAS NEGRA",
+        name: "Guitarra electrica estilo SG TEXAS NEGRA",
         brand: "TEXAS",
         category: "Instrumentos de Cuerda",
         description: "La SG TEXAS es una guitarra con una excelente relación calidad-precio, ideal para dar los primeros pasos como guitarrista para llevar a los ensayos, simple pero efectiva al momento de arrancar a tocar, de ensayar.",
@@ -361,7 +361,7 @@ const listProducts = [
       },
       {
         id: 1031,
-        name: "Guitarra Criolla Clásica De Estudio Fonseca 25M Mate",
+        name: "Guitarra Criolla Clasica De Estudio Fonseca 25M Mate",
         brand: "Zagert",
         category: "Instrumentos de Cuerda",
         description: "Guitarra de estudio. La fabrica Zagert utiliza sus mas de 45 años de experiencia para lograr una guitarra accesible de buena calidad.",
@@ -385,7 +385,7 @@ const listProducts = [
       },
       {
         id: 1033,
-        name: "Guitarra Electro Acústica Ecualizador Washburn",
+        name: "Guitarra Electro Acustica Ecualizador Washburn",
         brand: "Washburn",
         category: "Instrumentos de Cuerda",
         description: "Descubre la belleza y calidad de la Guitarra Electro Acústica WA45CEN. Diseñada para ofrecer una experiencia musical excepcional, esta guitarra combina materiales de alta calidad, artesanía experta y un sonido envolvente",
@@ -397,7 +397,7 @@ const listProducts = [
       },
       {
         id: 1034,
-        name: "Guitarra Acústica Dreadnought All Mahogany Fender",
+        name: "Guitarra Acustica Dreadnought All Mahogany Fender",
         brand: "Fender",
         category: "Instrumentos de Cuerda",
         description: "La Guitarra Acústica Dreadnought All Mahogany Fender 097-0110-022 CD-60S ofrece un sabor distintivamente orgánico al agregar una tapa de caoba maciza a uno de nuestros modelos más populares. ",
@@ -409,7 +409,7 @@ const listProducts = [
       },
       {
         id: 1035,
-        name: "Guitarra Electro Acústica Ecualizador Con Funda Cort",
+        name: "Guitarra Electro Acustica Ecualizador Con Funda Cort",
         brand: "Cort",
         category: "Instrumentos de Cuerda",
         description: "Guitarra ElectroAcústica Cort GA-QF-TBB Con Funda",
@@ -421,7 +421,7 @@ const listProducts = [
       },
       {
         id: 1036,
-        name: "Bajo Eléctrico Jazz Bass Alder 4 Cuerdas SX",
+        name: "Bajo Electrico Jazz Bass Alder 4 Cuerdas SX",
         brand: "SX",
         category: "Instrumentos de Cuerda",
         description: "Bajo JB construido en madera sólida de Aliso americano de máxima calidad",
@@ -433,7 +433,7 @@ const listProducts = [
       },
       {
         id: 1037,
-        name: "Bajo Eléctrico Jazz Bass Vintage Pickguard Blanco 4 Cuerdas SX",
+        name: "Bajo Electrico Jazz Bass Vintage Pickguard Blanco 4 Cuerdas SX",
         brand: "SX",
         category: "Instrumentos de Cuerda",
         description: "Bajo eléctrico Vintage Series JB62.",
@@ -445,7 +445,7 @@ const listProducts = [
       },
       {
         id: 1038,
-        name: "Bajo Eléctrico Precision 4 Cuerdas Leonard",
+        name: "Bajo Electrico Precision 4 Cuerdas Leonard",
         brand: "Leonard",
         category: "Instrumentos de Cuerda",
         description: "Bajo eléctrico 4 cuerdas marca Leonard con micrófono precision, queremos destacar de este artículo que siendo un instrumento económico presenta un muy buen sonido, un mástil cómodo para tocar que además brinda una afinación adecuada y clavijas de excelente calidad que mantienen dicha afinación.",
@@ -457,7 +457,7 @@ const listProducts = [
       },
       {
         id: 1039,
-        name: "Ukelele concierto tapa con dibujo pájaro y flor Ashland",
+        name: "Ukelele concierto tapa con dibujo pajaro y flor Ashland",
         brand: "Ashland",
         category: "Instrumentos de Cuerda",
         description: "Ukelele Concierto 23″",
@@ -493,7 +493,7 @@ const listProducts = [
       },
       {
         id: 1042,
-        name: "Violin Acústico Yirelly CV101 1/8 Brillante",
+        name: "Violin Acustico Yirelly CV101 1/8 Brillante",
         brand: "Yirelly",
         category: "Instrumentos de Cuerda",
         description: "Violin Acústico",
@@ -529,7 +529,7 @@ const listProducts = [
       },
       {
         id: 1045,
-        name: "Melódica tipo clarinete de 27 notas KNIGHT",
+        name: "Melodica tipo clarinete de 27 notas KNIGHT",
         brand: "Knight",
         category: "Instrumentos de Viento",
         description: "Flauta melódica clarinete tipo de 27 teclas para soplar",
@@ -541,7 +541,7 @@ const listProducts = [
       },
       {
         id: 1046,
-        name: "Melódica Flauta Piano 32 Notas Con Funda Lincoln",
+        name: "Melodica Flauta Piano 32 Notas Con Funda Lincoln",
         brand: "Lincoln",
         category: "Instrumentos de Viento",
         description: "¡Descubre la versatilidad y la comodidad de la Flauta Melódica tipo piano de 32 notas de la reconocida marca Lincoln! Esta flauta te ofrece una experiencia musical única y conveniente, ideal para principiantes y músicos en movimiento.",
@@ -553,7 +553,7 @@ const listProducts = [
       },
       {
         id: 1047,
-        name: "Amplificador Para Acústica 2 Canales Con Bluetooth Efectos NUX con BATERIA",
+        name: "Amplificador Para Acustica 2 Canales Con Bluetooth Efectos NUX con BATERIA",
         brand: "Nux",
         category: "Amplificadores",
         description: "Es un amplificador acústico compacto con batería recargable incorporada que puede funcionar durante 4 horas para tocar en la calle.",
@@ -577,7 +577,7 @@ const listProducts = [
       },
       {
         id: 1049,
-        name: "Amplificador Para Guitarra Eléctrica 10 W Fender Frontman",
+        name: "Amplificador Para Guitarra Electrica 10 W Fender Frontman",
         brand: "Fender",
         category: "Amplificadores",
         description: "El Frontman 10G proporciona el tono clásico de Fender en un paquete pequeño. La tela de rejilla plateada, las perillas de los amplificadores con faldón y el logo del amplificador Fender brindan al Frontman 10G toda la estética clásica de los amplificadores “Blackface” clásicos.",
@@ -601,7 +601,7 @@ const listProducts = [
       },
       {
         id: 1051,
-        name: "Amplificador Para Bajo Eléctrico 50 W HARTKE",
+        name: "Amplificador Para Bajo Electrico 50 W HARTKE",
         brand: "Hartke",
         category: "Amplificadores",
         description: "La serie HD de Hartke le ofrece la tecnología de altavoces más avanzada junto con una potente amplificación, todo ello con un diseño extremadamente compacto y a un precio inigualable.",
@@ -613,7 +613,7 @@ const listProducts = [
       },
       {
         id: 1052,
-        name: "Batería Electrónica 4 Cuerpos 8 Pads Con Mesh Thunder",
+        name: "Bateria Electronica 4 Cuerpos 8 Pads Con Mesh Thunder",
         brand: "Thunder",
         category: "Baterías y Percusión",
         description: "¡Descubre la emoción y la versatilidad de la Batería Electrónica! Esta batería electrónica está diseñada para brindarte una experiencia de batería realista y de alta calidad en un formato compacto y conveniente.",
@@ -625,7 +625,7 @@ const listProducts = [
       },
       {
         id: 1053,
-        name: "Batería Electrónica 5 Cuerpos 7 Pads Thunder",
+        name: "Batería Electronica 5 Cuerpos 7 Pads Thunder",
         brand: "Thunder",
         category: "Baterías y Percusión",
         description: "Bateria electronica plegable. Estable y de rapido ensamblaje. Permite configurarse para shows o fiestas. Los nuevos Pad proveen una performance natural. El trigger puede ser instalado con el martillo para proporcional un efecto real. El hihat ofrece una voz natural. Es compatible con sistemas de Software de enseñnanza. Su cerebro possee abundantes voces.",
@@ -637,7 +637,7 @@ const listProducts = [
       },
       {
         id: 1054,
-        name: "Parche Arenado Capa Doble 14″ Con Perforaciones Antiarmónicas Evans",
+        name: "Parche Arenado Capa Doble 14″ Con Perforaciones Antiarmonicas Evans",
         brand: "Evans",
         category: "Baterías y Percusión",
         description: "Parche de tambor blanco de 14″ fabricado con dos capas de película. Una capa exterior de 5 mil y una capa interior de 7.5 mil.",
