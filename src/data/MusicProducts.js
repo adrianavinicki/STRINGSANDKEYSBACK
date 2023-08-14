@@ -9,7 +9,7 @@ const listProducts = [
         "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1001_rx2ca0.jpg",
       product_status: true,
       quantity: 2000,
-      price: 11.159,
+      price: 11159,
     },
     {
         id: 1002,
@@ -21,7 +21,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1002_dxucqv.jpg",
         product_status: true,
         quantity: 2000,
-        price: 10.070,
+        price: 10070,
       },
       {
         id: 1003,
@@ -33,7 +33,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1003_nuajz0.jpg",
         product_status: true,
         quantity: 2000,
-        price: 7.368,
+        price: 7368,
       },
       {
         id: 1004,
@@ -45,7 +45,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1004_fcyzko.jpg",
         product_status: true,
         quantity: 2000,
-        price: 13.429,
+        price: 13429,
       },
       {
         id: 1005,
@@ -57,7 +57,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1005_piq59k.jpg",
         product_status: true,
         quantity: 2000,
-        price: 3.080,
+        price: 3080,
       },
       {
         id: 1006,
@@ -69,7 +69,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1006_xya8u4.jpg",
         product_status: true,
         quantity: 2000,
-        price: 9.132,
+        price: 9132,
       },
       {
         id: 1007,
@@ -81,7 +81,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1007_hwqzlk.jpg",
         product_status: true,
         quantity: 2000,
-        price: 1.490,
+        price: 1490,
       },
       {
         id: 1008,
@@ -93,7 +93,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1008_s9o035.jpg",
         product_status: true,
         quantity: 2000,
-        price: 5.455,
+        price: 5455,
       },
       {
         id: 1009,
@@ -105,7 +105,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1009_ngg832.jpg",
         product_status: true,
         quantity: 2000,
-        price: 11.641,
+        price: 11641,
       },
       {
         id: 1010,
@@ -117,7 +117,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1010_vjyr3u.jpg",
         product_status: true,
         quantity: 2000,
-        price: 24.833,
+        price: 24833,
       },
       {
         id: 1011,
@@ -129,7 +129,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1011_hynib2.jpg",
         product_status: true,
         quantity: 2000,
-        price: 5.455,
+        price: 5455,
       },
       {
         id: 1012,
@@ -141,7 +141,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1012_mh3m6o.jpg",
         product_status: true,
         quantity: 2000,
-        price: 2.381,
+        price: 2381,
       },
       {
         id: 1013,
@@ -153,7 +153,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1013_w6vdpp.jpg",
         product_status: true,
         quantity: 2000,
-        price: 8.576,
+        price: 8576,
       },
       {
         id: 1014,
@@ -177,7 +177,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1015_hvc9nc.jpg",
         product_status: true,
         quantity: 2000,
-        price: 8.882,
+        price: 8882,
       },
       {
         id: 1016,
@@ -189,7 +189,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1016_sbqdew.jpg",
         product_status: true,
         quantity: 2000,
-        price: 4.040,
+        price: 4040,
       },
       {
         id: 1017,
@@ -201,7 +201,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1017_xrmwvy.jpg",
         product_status: true,
         quantity: 2000,
-        price: 7.539,
+        price: 7539,
       },
       {
         id: 1018,
@@ -213,7 +213,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1018_gqzffr.jpg",
         product_status: true,
         quantity: 2000,
-        price: 4.796,
+        price: 4796,
       },
       {
         id: 1019,
@@ -225,7 +225,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1019_wb6cho.jpg",
         product_status: true,
         quantity: 2000,
-        price: 8.542,
+        price: 8542,
       },
       {
         id: 1020,
@@ -237,7 +237,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1020_gd4ytu.jpg",
         product_status: true,
         quantity: 2000,
-        price: 6.087,
+        price: 6087,
       },
       {
         id: 1021,
@@ -249,7 +249,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1021_kodwap.jpg",
         product_status: true,
         quantity: 2000,
-        price: 347.151,
+        price: 347151,
       },
       {
         id: 1022,
@@ -261,7 +261,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1022_whezsu.jpg",
         product_status: true,
         quantity: 2000,
-        price: 131.191,
+        price: 131191,
       },
       {
         id: 1023,
@@ -273,7 +273,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1023_z7nkgm.jpg",
         product_status: true,
         quantity: 2000,
-        price: 476.814,
+        price: 346814,
       },
       {
         id: 1024,
@@ -285,7 +285,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1024_t6unaj.jpg",
         product_status: true,
         quantity: 2000,
-        price: 11.316,
+        price: 11316,
       },
       {
         id: 1025,
@@ -297,7 +297,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1025_ojq4gx.jpg",
         product_status: true,
         quantity: 2000,
-        price: 96.329,
+        price: 96329,
       },
       {
         id: 1026,
@@ -309,7 +309,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1026_wht8zz.jpg",
         product_status: true,
         quantity: 2000,
-        price: 225.528,
+        price: 225528,
       },
       {
         id: 1027,
@@ -321,7 +321,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1027_v7j9up.jpg",
         product_status: true,
         quantity: 2000,
-        price: 278.079,
+        price: 278079,
       },
       {
         id: 1028,
@@ -333,7 +333,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1028_gcbsgv.jpg",
         product_status: true,
         quantity: 2000,
-        price: 127.470,
+        price: 127470,
       },
       {
         id: 1029,
@@ -345,7 +345,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1029_fqptge.jpg",
         product_status: true,
         quantity: 2000,
-        price: 98.889,
+        price: 98889,
       },
       {
         id: 1030,
@@ -357,7 +357,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1030_pwswot.jpg",
         product_status: true,
         quantity: 2000,
-        price: 120.638,
+        price: 120638,
       },
       {
         id: 1031,
@@ -369,7 +369,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928518/StringsAndKeys/1031_k5u04i.jpg",
         product_status: true,
         quantity: 2000,
-        price: 56.919,
+        price: 56919,
       },
       {
         id: 1032,
@@ -381,7 +381,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928518/StringsAndKeys/1032_kjdod5.jpg",
         product_status: true,
         quantity: 2000,
-        price: 12.072,
+        price: 12072,
       },
       {
         id: 1033,
@@ -393,7 +393,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928518/StringsAndKeys/1033_mvd29f.jpg",
         product_status: true,
         quantity: 2000,
-        price: 115.634,
+        price: 115634,
       },
       {
         id: 1034,
@@ -405,7 +405,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928518/StringsAndKeys/1034_fc6d6k.jpg",
         product_status: true,
         quantity: 2000,
-        price: 253.760,
+        price: 253760,
       },
       {
         id: 1035,
@@ -417,7 +417,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928518/StringsAndKeys/1035_i4oqz3.jpg",
         product_status: true,
         quantity: 2000,
-        price: 221.003,
+        price: 221003,
       },
       {
         id: 1036,
@@ -429,7 +429,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928518/StringsAndKeys/1036_igcgek.jpg",
         product_status: true,
         quantity: 2000,
-        price: 262.095,
+        price: 262095,
       },
       {
         id: 1037,
@@ -441,7 +441,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928518/StringsAndKeys/1037_ew2rpm.jpg",
         product_status: true,
         quantity: 2000,
-        price: 192.684,
+        price: 192684,
       },
       {
         id: 1038,
@@ -453,7 +453,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928518/StringsAndKeys/1038_nzhzvu.jpg",
         product_status: true,
         quantity: 2000,
-        price: 121.028,
+        price: 121028,
       },
       {
         id: 1039,
@@ -465,7 +465,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928518/StringsAndKeys/1039_rhoakn.jpg",
         product_status: true,
         quantity: 2000,
-        price: 34.240,
+        price: 34240,
       },
       {
         id: 1040,
@@ -477,7 +477,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928518/StringsAndKeys/1040_atjxha.jpg",
         product_status: true,
         quantity: 2000,
-        price: 16.139,
+        price: 16139,
       },
       {
         id: 1041,
@@ -489,7 +489,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928519/StringsAndKeys/1041_nus7sa.jpg",
         product_status: true,
         quantity: 2000,
-        price: 69.432,
+        price: 69432,
       },
       {
         id: 1042,
@@ -501,7 +501,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928519/StringsAndKeys/1042_mbqluc.jpg",
         product_status: true,
         quantity: 2000,
-        price: 51.120,
+        price: 51120,
       },
       {
         id: 1043,
@@ -513,7 +513,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928519/StringsAndKeys/1043_roo9gt.jpg",
         product_status: true,
         quantity: 2000,
-        price: 5.049,
+        price: 5049,
       },
       {
         id: 1044,
@@ -525,7 +525,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928519/StringsAndKeys/1044_uirigp.jpg",
         product_status: true,
         quantity: 2000,
-        price: 7.578,
+        price: 7578,
       },
       {
         id: 1045,
@@ -537,7 +537,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928519/StringsAndKeys/1045_qljhgw.jpg",
         product_status: true,
         quantity: 2000,
-        price: 6.216,
+        price: 6216,
       },
       {
         id: 1046,
@@ -549,7 +549,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928519/StringsAndKeys/1046_wvfm6q.jpg",
         product_status: true,
         quantity: 2000,
-        price: 11.629,
+        price: 11629,
       },
       {
         id: 1047,
@@ -561,11 +561,11 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928519/StringsAndKeys/1047_ooiksv.jpg",
         product_status: true,
         quantity: 2000,
-        price: 189.356,
+        price: 189356,
       },
       {
         id: 1048,
-        name: "Caja Potenciada 1 x 12″ + Driver 1,4″- 2.000 Watts Respuesta Plana Headrush FRFR112",
+        name: "Caja Potenciada Amplificador 1 x 12″ + Driver 1,4″- 2.000 Watts Respuesta Plana Headrush FRFR112",
         brand: "Headrush",
         category: "Amplificadores",
         description: "Una caja de respuesta plana especialmente diseñada para amplificar la ultima generación de modeladores digitales.",
@@ -573,7 +573,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928519/StringsAndKeys/1048_zqunkv.jpg",
         product_status: true,
         quantity: 2000,
-        price: 318.199,
+        price: 318199,
       },
       {
         id: 1049,
@@ -585,7 +585,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1049_qfmpgg.jpg",
         product_status: true,
         quantity: 2000,
-        price: 97.840,
+        price: 97840,
       },
       {
         id: 1050,
@@ -597,7 +597,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1050_pwevct.jpg",
         product_status: true,
         quantity: 2000,
-        price: 55.359,
+        price: 55359,
       },
       {
         id: 1051,
@@ -609,7 +609,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1051_a8xc73.jpg",
         product_status: true,
         quantity: 2000,
-        price: 229.891,
+        price: 229891,
       },
       {
         id: 1052,
@@ -621,7 +621,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1052_dvhx0o.jpg",
         product_status: true,
         quantity: 2000,
-        price: 351.655,
+        price: 349655,
       },
       {
         id: 1053,
@@ -633,7 +633,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1053_sus1he.jpg",
         product_status: true,
         quantity: 2000,
-        price: 284.576,
+        price: 284576,
       },
       {
         id: 1054,
@@ -645,7 +645,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1054_gtvgcu.jpg",
         product_status: true,
         quantity: 2000,
-        price: 16.051,
+        price: 16051,
       },
       {
         id: 1055,
@@ -657,7 +657,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1055_wjfitu.jpg",
         product_status: true,
         quantity: 2000,
-        price: 13.568,
+        price: 13568,
       },
       {
         id: 1056,
@@ -669,7 +669,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1056_u92r3s.jpg",
         product_status: true,
         quantity: 2000,
-        price: 20.952,
+        price: 20952,
       },
       {
         id: 1057,
@@ -681,7 +681,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1057_ktxmko.jpg",
         product_status: true,
         quantity: 2000,
-        price: 18.131,
+        price: 18131,
       },
       {
         id: 1058,
@@ -693,7 +693,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1058_l9bfkp.jpg",
         product_status: true,
         quantity: 2000,
-        price: 5.630,
+        price: 5630,
       },
       {
         id: 1059,
@@ -705,7 +705,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928521/StringsAndKeys/1059_fdjowv.jpg",
         product_status: true,
         quantity: 2000,
-        price: 14.758,
+        price: 14758,
       },
       {
         id: 1060,
@@ -717,7 +717,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1060_ghfqx5.jpg",
         product_status: true,
         quantity: 2000,
-        price: 22.165,
+        price: 22165,
       },
       {
         id: 1061,
@@ -729,7 +729,7 @@ const listProducts = [
           "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1061_ztfp1y.jpg",
         product_status: true,
         quantity: 2000,
-        price: 36.733,
+        price: 36733,
       },
   ];
   

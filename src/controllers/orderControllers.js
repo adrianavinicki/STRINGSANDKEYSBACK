@@ -10,6 +10,12 @@ const getOrderdetail = async () => {
   });
 };
 
+//-----OBTENER ORDEN POR ID------
+const getOrderById = async (id) => {
+  const orderIdData = await Orderdetail.findByPk(id);
+  return orderIdData;
+};
+
 //----OBTENER LAS ORDENES SEGUN SU STATUS-----
 const getOrderByStatus = async (status) => {
   return await Orderdetail.findAll({
@@ -163,4 +169,5 @@ module.exports = {
   getOrderByUserAndStatus,
   getOrderByDateAndStatus,
   getOrderByPurchase,
+  getOrderById,
 };

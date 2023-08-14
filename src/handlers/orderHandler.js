@@ -9,53 +9,46 @@ const {
   onlyLettersCheck,
   onlyLettersOrNumbersCheck,
 } = require("../helpers/validation.js");
+//llegue hasta aca, hay que ver el handler de lo que no esta amarillo y luego rutas y luego probarlo
 const {
-  getDetailOrder,
-  getDetailByStatus,
-  getDetailByProductAndUser,
-  getDetailByProductAndDate,
-  getDetailByProductAndStatus,
-  getDetailByProductAndPrice,
-  getDetailByProductAndQuantity,
-  getDetailByUserAndDate,
-  getDetailByUserAndStatus,
-  getDetailByDateAndStatus,
-  getDetailByOrder,
-} = require("../helpers/detailordershelps");
+  createOrder,
+  getOrderdetail,
+  getOrderByStatus,
+  getOrderByProductAndUser,
+  getOrderByProductAndDate,
+  getOrderByProductAndStatus,
+  getOrderByProductAndPrice,
+  getOrderByProductAndQuantity,
+  getOrderByUserAndDate,
+  getOrderByUserAndStatus,
+  getOrderByDateAndStatus,
+  getOrderByPurchase,
+  getOrderById,
+} = require("../controllers/orderControllers");
 
 // -----------xxxx-------------------------
-// Traigo producto x id de mi base de datos
+// Traigo orden x id de mi base de datos
 
 const getById = async (req, res, next) => {
   const { id } = req.params;
   let check = onlyNumbersCheck(id);
   if (check !== true) return res.status(412).json({ message: "Invalid Input" });
   try {
-    const detail = await Detailorder.findByPk(id);
-    detail
-      ? res.status(200).json(detail)
-      : res
-          .status(404)
-          .json({ message: "The searched detail order is not found" });
+    const orderDetail = await getOrderById(id);
+    orderDetail
+      ? res.status(200).json(orderDetail)
+      : res.status(404).json({ message: "The searched order is not found" });
   } catch (error) {
     res.status(404).json(error.message);
   }
 };
 
 // -----------xxxx-------------------------
-// Traigo todos los details orders o sus propiedades
+// Traigo todos las orders o las traigo filtradas por sus propiedades
 
-const getDetailOrderByProperties = async (req, res, next) => {
-  const {
-    idDetail,
-    price,
-    quantity,
-    date,
-    status,
-    idProduct,
-    idOrder,
-    idUser,
-  } = req.query;
+const getOrderByProperties = async (req, res, next) => {
+  const { id, price, quantity, date, status, idProduct, idPurchase, idUser } =
+    req.query;
   console.log("este es el query :", req.query);
 
   try {
@@ -65,12 +58,11 @@ const getDetailOrderByProperties = async (req, res, next) => {
         console.log("este productId o userId: ", check);
         return res.status(500).json({ message: "Invalid Input" });
       }
-      let details = await getDetailByProductAndUser(idProduct, idUser);
-      return details.length > 0
-        ? res.status(200).json(details)
+      let orders = await getOrderByProductAndUser(idProduct, idUser);
+      return orders.length > 0
+        ? res.status(200).json(orders)
         : res.status(404).json({
-            message:
-              "there is no detail order with the product and user required",
+            message: "there is no order with the product and user required",
           });
     }
     if (idProduct & status) {
@@ -78,12 +70,11 @@ const getDetailOrderByProperties = async (req, res, next) => {
         console.log("este es status: ", status);
         return res.status(500).json({ message: "Invalid Input" });
       }
-      let details = await getDetailByProductAndStatus(idProduct, status);
-      return details.length > 0
-        ? res.status(200).json(details)
+      let orders = await getOrderByProductAndStatus(idProduct, status);
+      return orders.length > 0
+        ? res.status(200).json(orders)
         : res.status(404).json({
-            message:
-              "there is no detail order with the product and status required",
+            message: "there is no order with the product and status required",
           });
     }
     if (idProduct & date) {
@@ -91,12 +82,11 @@ const getDetailOrderByProperties = async (req, res, next) => {
         console.log("este es date: ", date);
         return res.status(500).json({ message: "Invalid Input" });
       }
-      let details = await getDetailByProductAndDate(idProduct, date);
-      return details.length > 0
-        ? res.status(200).json(details)
+      let orders = await getOrderByProductAndDate(idProduct, date);
+      return orders.length > 0
+        ? res.status(200).json(orders)
         : res.status(404).json({
-            message:
-              "there is no detail order with the product and date required",
+            message: "there is no order with the product and date required",
           });
     }
     if (idProduct & price) {
@@ -105,12 +95,12 @@ const getDetailOrderByProperties = async (req, res, next) => {
         console.log("este productId o userId: ", check);
         return res.status(500).json({ message: "Invalid Input" });
       }
-      let details = await getDetailByProductAndPrice(idProduct, price);
-      return details.length > 0
-        ? res.status(200).json(details)
+      let orders = await getOrderByProductAndPrice(idProduct, price);
+      return orders.length > 0
+        ? res.status(200).json(orders)
         : res.status(404).json({
             message:
-              "there is no detail order with the product and the price required",
+              "there is no order with the product and the price required",
           });
     }
     if (idProduct & quantity) {
@@ -119,12 +109,12 @@ const getDetailOrderByProperties = async (req, res, next) => {
         console.log("este productId o userId: ", check);
         return res.status(500).json({ message: "Invalid Input" });
       }
-      let details = await getDetailByProductAndQuantity(idProduct, quantity);
-      return details.length > 0
-        ? res.status(200).json(details)
+      let orders = await getOrderByProductAndQuantity(idProduct, quantity);
+      return orders.length > 0
+        ? res.status(200).json(orders)
         : res.status(404).json({
             message:
-              "there is no detail order with the product and the quantity required",
+              "there is no order with the product and the quantity required",
           });
     }
     if (idUser & date) {
@@ -132,11 +122,11 @@ const getDetailOrderByProperties = async (req, res, next) => {
         console.log("este es date: ", date);
         return res.status(500).json({ message: "Invalid Input" });
       }
-      let details = await getDetailByUserAndDate(idUser, date);
-      return details.length > 0
-        ? res.status(200).json(details)
+      let orders = await getOrderByUserAndDate(idUser, date);
+      return orders.length > 0
+        ? res.status(200).json(orders)
         : res.status(404).json({
-            message: "there is no detail order with the user & date required",
+            message: "there is no order with the user & date required",
           });
     }
     if (idUser & status) {
@@ -144,12 +134,11 @@ const getDetailOrderByProperties = async (req, res, next) => {
         console.log("este es status: ", status);
         return res.status(500).json({ message: "Invalid Input" });
       }
-      let details = await getDetailByUserAndStatus(idUser, status);
-      return details.length > 0
-        ? res.status(200).json(details)
+      let orders = await getOrderByUserAndStatus(idUser, status);
+      return orders.length > 0
+        ? res.status(200).json(orders)
         : res.status(404).json({
-            message:
-              "there is no detail order with the user and status required",
+            message: "there is no order with the user and status required",
           });
     }
     if (date & status) {
@@ -162,11 +151,11 @@ const getDetailOrderByProperties = async (req, res, next) => {
         console.log("este es status: ", status);
         return res.status(500).json({ message: "Invalid Input" });
       }
-      let details = await getDetailByDateAndStatus(idUser, status);
-      return details.length > 0
-        ? res.status(200).json(details)
+      let orders = await getOrderByDateAndStatus(idUser, status);
+      return orders.length > 0
+        ? res.status(200).json(orders)
         : res.status(404).json({
-            message: "there is no detail order with the date & status required",
+            message: "there is no order with the date & status required",
           });
     }
     if (status) {
@@ -174,40 +163,40 @@ const getDetailOrderByProperties = async (req, res, next) => {
         console.log("este es  status: ", status);
         return res.status(500).json({ message: "Invalid Input" });
       }
-      let detail = await getDetailByStatus(status);
-      return detail.length > 0
-        ? res.status(200).json(detail)
+      let orders = await getOrderByStatus(status);
+      return orders.length > 0
+        ? res.status(200).json(orders)
         : res.status(404).json({
             message: "there is no detail order with the status required",
           });
     }
-    if (idOrder) {
-      let check = onlyNumbersCheck(idOrder);
+    if (idPurchase) {
+      let check = onlyNumbersCheck(id);
       if (check !== true) {
         console.log("este idOrder: ", check);
         return res.status(500).json({ message: "Invalid Input" });
       }
-      let details = await getDetailByOrder(idOrder);
-      return details.length > 0
-        ? res.status(200).json(details)
+      let order = await getOrderByPurchase(idPurchase);
+      return order.length > 0
+        ? res.status(200).json(order)
         : res.status(404).json({
-            message: "there is no detail order with order id required",
+            message: "there is no order with order id required",
           });
     }
     if (
-      !idDetail &&
+      !id &&
       !price &&
       !quantity &&
       !date &&
       !status &&
       !idProduct &&
-      !idOrder &&
+      !idPurchase &&
       !idUser
     ) {
-      let details = await getDetailOrder();
-      return details.length > 0
-        ? res.status(200).json(details)
-        : res.status(404).json({ message: "Details orders not found" });
+      let orders = await getOrder();
+      return orders.length > 0
+        ? res.status(200).json(orders)
+        : res.status(404).json({ message: "Orders not found" });
     }
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -216,5 +205,5 @@ const getDetailOrderByProperties = async (req, res, next) => {
 
 module.exports = {
   getById,
-  getDetailOrderByProperties,
+  getOrderByProperties,
 };
