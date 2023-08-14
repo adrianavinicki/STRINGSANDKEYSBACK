@@ -46,7 +46,7 @@ const postProductHandler = async (req, res) => {
   const imageFile = req.file;
 
   console.log(imageFile);
-    let imagen = null;
+    let imagen = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxik8f-0VdGyTPqLlOxXhJOHPms35wKycNT37kSN7_e-d7Bt3bOYslLO_BbD0ySMLvGsg&usqp=CAU";
 
     if(imageFile) {
       const showImagen = await cloudinary.uploader.upload(imageFile.path, {public_id: name});
@@ -78,7 +78,7 @@ const postProductHandler = async (req, res) => {
     return res.status(201).json(product);
     
   } catch (error) {
-    console.log(error,message);
+    console.log(error.message);
     return res.status(500).json({message: "hubo un error en el server, intente mas tarde"})
   }
 }
