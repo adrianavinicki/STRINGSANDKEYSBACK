@@ -2,8 +2,7 @@ require("dotenv").config();
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
 const { NUMBER } = require("sequelize");
-// hasta aca llegue, me falta todo esto, ver si puedo separar el create
-// y luego hacer ruta y probarlo
+
 const {
   onlyNumbersCheck,
   onlyLettersCheck,
@@ -11,7 +10,6 @@ const {
 } = require("../helpers/validation.js");
 //llegue hasta aca, hay que ver el handler de lo que no esta amarillo y luego rutas y luego probarlo
 const {
-  createOrder,
   getOrderdetail,
   getOrderByStatus,
   getOrderByProductAndUser,
@@ -193,7 +191,7 @@ const getOrderByProperties = async (req, res, next) => {
       !idPurchase &&
       !idUser
     ) {
-      let orders = await getOrder();
+      let orders = await getOrderdetail();
       return orders.length > 0
         ? res.status(200).json(orders)
         : res.status(404).json({ message: "Orders not found" });
