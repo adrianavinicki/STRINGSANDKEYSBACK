@@ -58,8 +58,8 @@ const createPayment = async (req, res, next) => {
     // Crear el registro del pago en la base de datos
 
     const newPayment = await Payment.create({
-      order_date: new Date(), // Fecha de creación del pago
-      total_order: totalprice, // Total de la orden
+      purchase_date: new Date(), // Fecha de creación del pago
+      total_purchase: totalprice, // Total de la orden
       payment_status: "approved", // Estado del pago
       id_payment: id.replace(/["-]/g, ""),
       active: true, // Estado activo del pago
@@ -104,8 +104,8 @@ const createPayment = async (req, res, next) => {
     /*const paymentId = response.body.id;
     const payment = await mercadopago.payment.findById(paymentId);
     await newPayment.update({
-      orderId: order.id,
-      userId: order.userId,
+      purchaseId: purchase.id,
+      userId: purchase.userId,
       date_approved: payment.body.date_approved,
       authorization_code: payment.body.authorization_code,
       mp_id_order: payment.body.order.id,
