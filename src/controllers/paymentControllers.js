@@ -45,9 +45,7 @@ const createPayment = async (req, res, next) => {
       },
       auto_return: "approved",
       binary_mode: true,
-      // notification_url:
-      //   "https://",
-      // //"https://",
+      notification_url: BACK_URL_NOTIFICATION,
     };
 
     console.log("esta es la preferencia: ", preference);
@@ -101,22 +99,43 @@ const createPayment = async (req, res, next) => {
 
     console.log("purchase_history:", user.purchase_history);
 
-    /*const paymentId = response.body.id;
-    const payment = await mercadopago.payment.findById(paymentId);
-    await newPayment.update({
-      purchaseId: purchase.id,
-      userId: purchase.userId,
-      date_approved: payment.body.date_approved,
-      authorization_code: payment.body.authorization_code,
-      mp_id_order: payment.body.order.id,
-      fee_mp: payment.body.fee_details[0].amount,
-    });
-    console.log(" payment updated :", newPayment);*/
     return res.status(200).json({ message: "Payment created", init_point });
   } catch (error) {
     console.error("Payment was not created", error);
     return res.status(500).json({ message: "Payment was not created" });
   }
 };
+//------ DATOS A RECIBIR DE MERCADO PAGO SOBRE EL PAGO -----
+async function paymentNotification(req, res) {
+  const { query } = req;
+  const topic = query.topic || query.type;
+  //var merchantOrder;
+  //var payment;
+  switch (topic) {
+    case "payment":
+      const paymentId = query.id || query["data.id"];
+      const payment = await mercadopago.payment.findById(paymentId);
+      const idS = payment.body.additional_info.items.map((e) => e.id);
+      Payment.update(
+        {
+          date_approved: payment.body.date_approved,
+          authorization_code: payment.body.authorization_code,
+          mp_id_order: payment.body.order.id,
+          fee_mp: payment.body.fee_details[0].amount,
+          payment_status: payment.body.status,
+        },
+        {
+          where: { id: idS },
+        }
+      )
+        .then((numRowsAffected) => {
+          //console.log(`Se actualizaron ${numRowsAffected} registros`);
+        })
+        .catch((err) => {
+          //console.error("Error al actualizar registros:", err);
+        });
+  }
+  res.send();
+}
 
-module.exports = { createPayment };
+module.exports = { createPayment, paymentNotification };
