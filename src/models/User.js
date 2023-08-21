@@ -21,14 +21,14 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       gender: {
-        type: DataTypes.ENUM("F","M","X"),
+        type: DataTypes.ENUM("F", "M", "X"),
         allowNull: false,
       },
       email: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,
-        validate: {isEmail: true,},
+        validate: { isEmail: true },
       },
       delivery_address: {
         type: DataTypes.STRING,
@@ -38,7 +38,8 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       role_id: {
-        type: DataTypes.ENUM("admin","client"),
+        type: DataTypes.ENUM("admin", "client"),
+        defaultValue: "client",
         allowNull: false,
       },
       user_status: {

@@ -77,7 +77,6 @@ const createUser = async (req, res, next) => {
     !gender ||
     !email ||
     !delivery_address ||
-    !role_id ||
     first_name === "" ||
     last_name === "" ||
     email === "" ||
