@@ -16,7 +16,7 @@ server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
 
-const originsAllowed = ["http://localhost:3000", "https://stringsandkeys.up.railway.app/"];
+const originsAllowed = ["http://localhost:3000", "https://stringsandkeys.up.railway.app"];
 
 server.use((req, res, next) => {
 
