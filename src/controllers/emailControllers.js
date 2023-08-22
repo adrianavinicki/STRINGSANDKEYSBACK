@@ -18,7 +18,7 @@ const emailNotification = async (req, res) => {
     try {
         if(!userMail || !contenido || !titulo){
             const error = "Faltan Datos";
-            throw (error)
+            throw new Error(error)
         }
         const mailOptions = {
             from: "stringsandkeysmusicstore@gmail.com",
@@ -27,12 +27,11 @@ const emailNotification = async (req, res) => {
             text: contenido,
         }
         transporter.sendMail(mailOptions, (error, info) => {
-            res.status(200).send("Email Sent" + info)
-            // if (error) {
-            //     throw new Error ('no se mando el transporter');
-            // } else {
-            //     res.status(200).send("Email Sent" + info)
-            // }
+            if (error) {
+                throw new Error(error.message);
+            } else {
+                res.status(200).send("Email Sent" + info)
+            }
         })
     } catch (error) {
         res.status(400).send(error.message)
