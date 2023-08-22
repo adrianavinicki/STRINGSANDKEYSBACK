@@ -16,19 +16,19 @@ server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
 
-const originsAllowed = ["http://localhost:3000", "https://stringsandkeys.up.railway.app"];
+// const originsAllowed = ["http://localhost:3000", "https://stringsandkeys.up.railway.app"];
 
 server.use((req, res, next) => {
 
-  const origin = req.headers.origin;
+  // const origin = req.headers.origin;
 
-  if (originsAllowed.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-  }
-  //res.header(
-  //  "Access-Control-Allow-Origin",
-  //  /*"https://wondertoys.up.railway.app"*/ "http://localhost:3000"
-  //); // update to match the domain you will make the request from
+  // if (originsAllowed.includes(origin)) {
+  //   res.header('Access-Control-Allow-Origin', origin);
+  // }
+  res.header(
+   "Access-Control-Allow-Origin",'*'
+   /*"https://wondertoys.up.railway.app" "http://localhost:3000"*/
+  ); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
