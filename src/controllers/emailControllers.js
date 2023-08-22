@@ -27,11 +27,12 @@ const emailNotification = async (req, res) => {
             text: contenido,
         }
         transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                throw new Error ('no se mando el transporter');
-            } else {
-                res.status(200).send("Email Sent" + info)
-            }
+            res.status(200).send("Email Sent" + info)
+            // if (error) {
+            //     throw new Error ('no se mando el transporter');
+            // } else {
+            //     res.status(200).send("Email Sent" + info)
+            // }
         })
     } catch (error) {
         res.status(400).send(error.message)
