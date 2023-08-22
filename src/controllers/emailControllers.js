@@ -28,7 +28,7 @@ const emailNotification = async (req, res) => {
         }
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                throw new Error(error.message);
+                throw new Error ('no se mando el transporter');
             } else {
                 res.status(200).send("Email Sent" + info)
             }
