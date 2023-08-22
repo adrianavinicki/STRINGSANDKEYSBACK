@@ -18,7 +18,7 @@ const emailNotification = async (req, res) => {
     try {
         if(!userMail || !contenido || !titulo){
             const error = "Faltan Datos";
-            throw new Error(error)
+            throw (error)
         }
         const mailOptions = {
             from: "stringsandkeysmusicstore@gmail.com",
