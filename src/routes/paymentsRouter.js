@@ -10,6 +10,6 @@ const payments = Router();
 
 //payments.get("/", getAllPayments);
 payments.post("/generate", createPayment);
-//payments.post("/notification", paymentNotification);
+payments.post("/notification", paymentNotification);
 
 module.exports = payments;
