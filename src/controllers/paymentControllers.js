@@ -146,12 +146,13 @@ async function paymentNotification(req, res) {
 
   switch (topic) {
     case "payment":
-      const paymentId = query["data.id"]; //|| query.id;
+      const paymentId = query["data.id"] || query.id;
       try {
         const payment = await mercadopago.payment.findById(paymentId);
+        console.log("hola: ", payment);
 
         // Verificamos que la notificación contenga la información necesaria
-        if (
+        /*if (
           !payment ||
           !payment.body ||
           !payment.body.additional_info ||
@@ -161,23 +162,24 @@ async function paymentNotification(req, res) {
           return res
             .status(400)
             .json({ message: "Datos insuficientes en la notificación." });
-        }
+        }*/
 
-        const idS = payment.body.additional_info.items.map((e) => e.id);
-        console.log("IDs: ", idS);
+        //const idS = payment.body.additional_info.items.map((e) => e.id);
+        //console.log("IDs: ", idS);
 
         // Ahora que tenemos los IDs, podemos realizar la actualización de la base de datos
         await Payment.update(
           {
-            date_approved: payment.body.date_approved,
-            authorization_code: payment.body.authorization_code,
-            mp_id_order: payment.body.order.id,
-            fee_mp: payment.body.fee_details[0].amount,
-            payment_status: payment.body.status,
-          },
-          {
-            where: { id: idS },
+            //date_approved: payment.body.date_approved,
+            date_approved: payment.payments[0].date_approved,
+            //authorization_code: payment.body.authorization_code,
+            //mp_id_order: payment.body.order.id,
+            //fee_mp: payment.body.fee_details[0].amount,
+            //payment_status: payment.body.status,
           }
+          /*{
+            where: { id:  },
+          }*/
         );
 
         console.log(`Se actualizaron ${idS.length} registros`);
