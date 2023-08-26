@@ -108,22 +108,12 @@ const createPayment = async (req, res, next) => {
   }
 };
 //------ DATOS A RECIBIR DE MERCADO PAGO SOBRE EL PAGO -----
-async function paymentNotification(req, res) {
+/*async function paymentNotification(req, res) {
   const { query } = req;
   const topic = query.topic || query.type;
-  //var merchantOrder;
-  //var payment;
+  
   switch (topic) {
     case "payment":
-      /*const paymentId = query.id || query["data.id"];
-      const merchant_Order = await mercadopago.payment.findById(paymentId);
-      console.log("notification: merchant order:", merchant_Order);
-      const mp_Payment_Id = merchant_Order.body.id;
-      console.log("id del pago en mp: ", mp_Payment_Id);
-      const payment = await mercadopago.payment.findById(mp_Payment_Id);
-      const idS = payment.body.additional_info.items.map(
-        (e) => e.mp_Payment_Id.id
-      );*/
       const paymentId = query["data.id"] || query.id;
       const payment = await mercadopago.payment.findById(paymentId);
       const idS = payment.body.additional_info.items.map((e) => e.id);
@@ -148,6 +138,58 @@ async function paymentNotification(req, res) {
         });
   }
   res.send();
+}*/
+
+async function paymentNotification(req, res) {
+  const { query } = req;
+  const topic = query.topic || query.type;
+
+  switch (topic) {
+    case "payment":
+      const paymentId = query["data.id"] || query.id;
+      try {
+        const payment = await mercadopago.payment.findById(paymentId);
+
+        // Verificamos que la notificación contenga la información necesaria
+        if (
+          !payment ||
+          !payment.body ||
+          !payment.body.additional_info ||
+          !payment.body.additional_info.items
+        ) {
+          console.error("Datos insuficientes en la notificación.");
+          return res
+            .status(400)
+            .json({ message: "Datos insuficientes en la notificación." });
+        }
+
+        const idS = payment.body.additional_info.items.map((e) => e.id);
+        console.log("IDs: ", idS);
+
+        // Ahora que tenemos los IDs, podemos realizar la actualización de la base de datos
+        await Payment.update(
+          {
+            date_approved: payment.body.date_approved,
+            authorization_code: payment.body.authorization_code,
+            mp_id_order: payment.body.order.id,
+            fee_mp: payment.body.fee_details[0].amount,
+            payment_status: payment.body.status,
+          },
+          {
+            where: { id: idS },
+          }
+        );
+
+        console.log(`Se actualizaron ${idS.length} registros`);
+        res.send();
+      } catch (err) {
+        console.error("Error al procesar la notificación:", err);
+        res.status(500).json({ message: "Error al procesar la notificación." });
+      }
+      break;
+    default:
+      res.status(400).json({ message: "Tipo de notificación no válido." });
+  }
 }
 
 module.exports = { createPayment, paymentNotification };
