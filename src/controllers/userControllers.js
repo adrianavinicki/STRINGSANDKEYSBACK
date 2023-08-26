@@ -47,7 +47,6 @@ const createUser = async (req, res, next) => {
     return res.status(400).send({ message: "fields can not be empty" });
 
   try {
-
     // Crear el nuevo usuario
     const userCreated = await User.create({
       first_name,
@@ -75,28 +74,49 @@ const createUser = async (req, res, next) => {
 };
 
 const getUserByMail = async (req, res) => {
- const { email } = req.body;
+  const { email } = req.body;
 
- if(!email) {
-  return res.status(412).json({ message: "email no recibido" })
- }
-
- try {
-  const user = await User.findOne ({ where: { email: email}});
-
-  if (!user) {
-    return res.status(413).json({ message: "usuario no encontrado" })
+  if (!email) {
+    return res.status(412).json({ message: "email no recibido" });
   }
 
-  return res.status(200).json(user)
+  try {
+    const user = await User.findOne({ where: { email: email } });
 
- } catch (error) {
-  return res.status(500).json({ message: error.message})
- }
+    if (!user) {
+      return res.status(413).json({ message: "usuario no encontrado" });
+    }
 
-}
+    return res.status(200).json(user);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const putUser = async (req, res, next) => {
+  const { first_name, last_name, email, mobile, delivery_address } = req.body;
+  try {
+    const user = await User.findOne({
+      where: {
+        email: email,
+      },
+    });
+    console.log(user)
+    if (!user) res.status(404).json({ message: "User does not exist" });
+    const userModified = await user.update({
+      first_name,
+      last_name,
+      mobile,
+      delivery_address,
+    });
+    if (userModified) res.status(201).json({ message: "User modified" });
+  } catch (error) {
+    res.status(404).json(error.message);
+  }
+};
 
 module.exports = {
   createUser,
   getUserByMail,
+  putUser,
 };
