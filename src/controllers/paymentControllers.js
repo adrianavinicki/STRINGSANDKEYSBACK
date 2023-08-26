@@ -47,8 +47,6 @@ const createPayment = async (req, res, next) => {
       auto_return: "approved",
       binary_mode: true,
       notification_url: BACK_URL_NOTIFICATION,
-      //notification_url:
-      //  "https://a3a3-37-178-222-102.eu.ngrok.io/payments/notification",
     };
 
     console.log("esta es la preferencia: ", preference);
@@ -117,10 +115,19 @@ async function paymentNotification(req, res) {
   //var payment;
   switch (topic) {
     case "payment":
+      /*const paymentId = query.id || query["data.id"];
+      const merchant_Order = await mercadopago.payment.findById(paymentId);
+      console.log("notification: merchant order:", merchant_Order);
+      const mp_Payment_Id = merchant_Order.body.id;
+      console.log("id del pago en mp: ", mp_Payment_Id);
+      const payment = await mercadopago.payment.findById(mp_Payment_Id);
+      const idS = payment.body.additional_info.items.map(
+        (e) => e.mp_Payment_Id.id
+      );*/
       const paymentId = query.id || query["data.id"];
       const payment = await mercadopago.payment.findById(paymentId);
-      console.log("notification: ", payment);
       const idS = payment.body.additional_info.items.map((e) => e.id);
+      console.log("ids: ", idS);
       Payment.update(
         {
           date_approved: payment.body.date_approved,
