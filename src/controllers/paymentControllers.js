@@ -146,7 +146,7 @@ async function paymentNotification(req, res) {
 
   switch (topic) {
     case "payment":
-      const paymentId = query["data.id"] || query.id;
+      const paymentId = query["data.id"]; //|| query.id;
       try {
         const payment = await mercadopago.payment.findById(paymentId);
 
