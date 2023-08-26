@@ -124,20 +124,20 @@ async function paymentNotification(req, res) {
       const idS = payment.body.additional_info.items.map(
         (e) => e.mp_Payment_Id.id
       );*/
-      const paymentId = query.id || query["data.id"];
+      const paymentId = query["data.id"] || query.id;
       const payment = await mercadopago.payment.findById(paymentId);
-      const idS = payment.data.map((e) => e.id);
+      const idS = payment.body.additional_info.items.map((e) => e.id);
       console.log("ids: ", idS);
       Payment.update(
         {
-          date_approved: payment.data.date_approved,
-          authorization_code: payment.data.authorization_code,
-          mp_id_order: payment.data.order.id,
-          fee_mp: payment.data.fee_details[0].amount,
-          payment_status: payment.data.status,
+          date_approved: payment.body.date_approved,
+          authorization_code: payment.body.authorization_code,
+          mp_id_order: payment.body.order.id,
+          fee_mp: payment.body.fee_details[0].amount,
+          payment_status: payment.body.status,
         },
         {
-          where: { id_payment: idS.replace(/["-]/g, "") },
+          where: { id: idS },
         }
       )
         .then(() => {
