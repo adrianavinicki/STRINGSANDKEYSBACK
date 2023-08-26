@@ -45,7 +45,7 @@ const createPayment = async (req, res, next) => {
       },
       auto_return: "approved",
       binary_mode: true,
-      //notification_url: BACK_URL_NOTIFICATION,
+      notification_url: BACK_URL_NOTIFICATION,
     };
 
     console.log("esta es la preferencia: ", preference);
