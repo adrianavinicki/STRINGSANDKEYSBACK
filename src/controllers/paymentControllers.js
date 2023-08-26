@@ -10,6 +10,7 @@ const {
   BACK_URL_SUCCESS,
   BACK_URL_FAILED,
   BACK_URL_PENDING,
+  BACK_URL_NOTIFICATION,
   PORT,
 } = process.env;
 
@@ -46,6 +47,8 @@ const createPayment = async (req, res, next) => {
       auto_return: "approved",
       binary_mode: true,
       notification_url: BACK_URL_NOTIFICATION,
+      //notification_url:
+      //  "https://a3a3-37-178-222-102.eu.ngrok.io/payments/notification",
     };
 
     console.log("esta es la preferencia: ", preference);
