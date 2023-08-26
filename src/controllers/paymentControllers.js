@@ -119,6 +119,7 @@ async function paymentNotification(req, res) {
     case "payment":
       const paymentId = query.id || query["data.id"];
       const payment = await mercadopago.payment.findById(paymentId);
+      console.log("notification: ", payment);
       const idS = payment.body.additional_info.items.map((e) => e.id);
       Payment.update(
         {
@@ -132,11 +133,11 @@ async function paymentNotification(req, res) {
           where: { id: idS },
         }
       )
-        .then((numRowsAffected) => {
-          //console.log(`Se actualizaron ${numRowsAffected} registros`);
+        .then(() => {
+          console.log(`Se actualizaron 5 registros`);
         })
         .catch((err) => {
-          //console.error("Error al actualizar registros:", err);
+          console.error("Error al actualizar registros:", err);
         });
   }
   res.send();
