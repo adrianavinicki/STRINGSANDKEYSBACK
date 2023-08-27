@@ -2,17 +2,7 @@ const { Payment, Purchase, User, Orderdetail, Product } = require("../db");
 const { onlyDateCheck } = require("../helpers/validation");
 
 require("dotenv").config();
-const {
-  ACCESS_TOKEN,
-  FRONT_URL_SUCCESS,
-  FRONT_URL_PENDING,
-  FRONT_URL_FAILED,
-  BACK_URL_SUCCESS,
-  BACK_URL_FAILED,
-  BACK_URL_PENDING,
-  BACK_URL_NOTIFICATION,
-  PORT,
-} = process.env;
+const { ACCESS_TOKEN, BACK_URL, BACK_URL_NOTIFICATION, PORT } = process.env;
 
 const mercadopago = require("mercadopago");
 
@@ -20,6 +10,8 @@ const mercadopago = require("mercadopago");
 mercadopago.configure({
   access_token: ACCESS_TOKEN,
 });
+
+let idPaymentCreated;
 
 const createPayment = async (req, res, next) => {
   const { purchaseId } = req.body;
@@ -41,14 +33,14 @@ const createPayment = async (req, res, next) => {
         },
       ],
       back_urls: {
-        success: BACK_URL_SUCCESS,
-        failed: BACK_URL_FAILED,
+        success: `${BACK_URL}/success`,
+        failure: `${BACK_URL}/failure`,
+        pending: `${BACK_URL}/pending`,
       },
       auto_return: "approved",
       binary_mode: true,
-      notification_url: BACK_URL_NOTIFICATION,
+      notification_url: `${BACK_URL_NOTIFICATION}/payments/notification`,
     };
-
     console.log("esta es la preferencia: ", preference);
     // Crear el objeto de pago en Mercado Pago
     const response = await mercadopago.preferences.create(preference);
@@ -60,7 +52,7 @@ const createPayment = async (req, res, next) => {
       purchase_date: new Date(), // Fecha de creación del pago
       total_purchase: totalprice, // Total de la orden
       payment_status: "approved", // Estado del pago
-      id_payment: id.replace(/["-]/g, ""),
+      //id_payment: id.replace(/["-]/g, ""),
       active: true, // Estado activo del pago
     });
     console.log(" este es el newPayment :", newPayment);
@@ -81,6 +73,9 @@ const createPayment = async (req, res, next) => {
       },
       include: [Product],
     });
+    // actualizo la variable idPaymentCreated
+
+    idPaymentCreated = newPayment.id;
     //actualizo el campo purchase_history en user
     const currentPurchaseHistory = user.purchase_history;
     //revisar de ver si se puede poner el objeto completo
@@ -108,89 +103,54 @@ const createPayment = async (req, res, next) => {
   }
 };
 //------ DATOS A RECIBIR DE MERCADO PAGO SOBRE EL PAGO -----
-/*async function paymentNotification(req, res) {
-  const { query } = req;
-  const topic = query.topic || query.type;
-  
-  switch (topic) {
-    case "payment":
-      const paymentId = query["data.id"] || query.id;
-      const payment = await mercadopago.payment.findById(paymentId);
-      const idS = payment.body.additional_info.items.map((e) => e.id);
-      console.log("ids: ", idS);
-      Payment.update(
-        {
-          date_approved: payment.body.date_approved,
-          authorization_code: payment.body.authorization_code,
-          mp_id_order: payment.body.order.id,
-          fee_mp: payment.body.fee_details[0].amount,
-          payment_status: payment.body.status,
-        },
-        {
-          where: { id: idS },
-        }
-      )
-        .then(() => {
-          console.log(`Se actualizaron 5 registros`);
-        })
-        .catch((err) => {
-          console.error("Error al actualizar registros:", err);
-        });
-  }
-  res.send();
-}*/
 
 async function paymentNotification(req, res) {
-  const { query } = req;
-  const topic = query.topic || query.type;
+  const payment = req.query;
 
-  switch (topic) {
-    case "payment":
-      const paymentId = query["data.id"] || query.id;
-      try {
-        const payment = await mercadopago.payment.findById(paymentId);
-        console.log("hola: ", payment);
-
-        // Verificamos que la notificación contenga la información necesaria
-        /*if (
-          !payment ||
-          !payment.body ||
-          !payment.body.additional_info ||
-          !payment.body.additional_info.items
-        ) {
-          console.error("Datos insuficientes en la notificación.");
-          return res
-            .status(400)
-            .json({ message: "Datos insuficientes en la notificación." });
-        }*/
-
-        //const idS = payment.body.additional_info.items.map((e) => e.id);
-        //console.log("IDs: ", idS);
-
-        // Ahora que tenemos los IDs, podemos realizar la actualización de la base de datos
-        await Payment.update(
+  try {
+    if (payment.type === "payment") {
+      const data = await mercadopago.payment.findById(payment["data.id"]);
+      console.log("a tomar", data);
+      console.log("Data body:", data.body);
+      if (data.body.status === "rejected") {
+        const rejectedPayment = await Payment.update(
           {
-            //date_approved: payment.body.date_approved,
-            date_approved: payment.payments[0].date_approved,
-            //authorization_code: payment.body.authorization_code,
-            //mp_id_order: payment.body.order.id,
-            //fee_mp: payment.body.fee_details[0].amount,
-            //payment_status: payment.body.status,
+            //id_payment: data.body.id,
+            date_approved: data.body.date_approved,
+            // authorization_code: data.body.authorization_code,
+            mp_id_order: data.body.order.id,
+            //fee_mp: data.body.fee_details[0].amount,
+            payment_status: "failed",
+          },
+          {
+            where: {
+              id: idPaymentCreated,
+            },
           }
-          /*{
-            where: { id:  },
-          }*/
         );
-
-        console.log(`Se actualizaron ${idS.length} registros`);
-        res.send();
-      } catch (err) {
-        console.error("Error al procesar la notificación:", err);
-        res.status(500).json({ message: "Error al procesar la notificación." });
+      } else {
+        const updatedPayment = await Payment.update(
+          {
+            id_payment: data.body.id,
+            date_approved: data.body.date_approved,
+            authorization_code: data.body.authorization_code,
+            mp_id_order: data.body.order.id,
+            fee_mp: data.body.fee_details[0].amount,
+            payment_status: data.body.status,
+          },
+          {
+            where: {
+              id: idPaymentCreated,
+            },
+          }
+        );
+        console.log("pago completo: ", updatedPayment);
       }
-      break;
-    default:
-      res.status(400).json({ message: "Tipo de notificación no válido." });
+    }
+    res.sendStatus(204);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500).json({ error: error.message });
   }
 }
 
