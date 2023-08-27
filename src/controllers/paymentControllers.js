@@ -51,7 +51,6 @@ const createPayment = async (req, res, next) => {
     const newPayment = await Payment.create({
       purchase_date: new Date(), // Fecha de creación del pago
       total_purchase: totalprice, // Total de la orden
-      payment_status: "approved", // Estado del pago
       active: true, // Estado activo del pago
     });
     //console.log(" este es el newPayment :", newPayment);
@@ -179,4 +178,16 @@ async function paymentNotification(req, res) {
   }
 }
 
-module.exports = { createPayment, paymentNotification };
+//!GET payments
+const getAllPayments = async (req, res) => {
+  try {
+    const allPayments = await Payment.findAll({
+      include: [{ model: Purchase }, { model: User }],
+    });
+    res.status(200).send(allPayments);
+  } catch (e) {
+    res.status(404).json(e);
+  }
+};
+
+module.exports = { createPayment, paymentNotification, getAllPayments };
