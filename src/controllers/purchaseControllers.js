@@ -74,4 +74,13 @@ const createPurchase = async (req, res, next) => {
     }
 };
 
-module.exports = { createPurchase };
+const getPurchases = async (req, res) => {
+    try {
+        const response = await User.findAll({ include: [Purchase] });
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+}
+
+module.exports = { createPurchase, getPurchases };

@@ -81,10 +81,44 @@ const postProduct = async(data) => {
   }
 }
 
+
+const putProduct = async (req, res, next) => {
+  const {
+    name,
+    brand,
+    category,
+    description,
+    quantity,
+    price,
+    image,
+    product_status,
+  } = req.body;
+  const { id } = req.params;
+  try {
+    const product = await Product.findByPk(id);
+    if (!product) res.status(404).json({ message: "Product does not exist" });
+    const productModified = await product.update({
+      name,
+      brand,
+      category,
+      description,
+      quantity,
+      price,
+      image,
+      product_status,
+    });
+    if (productModified) res.status(201).json({ message: "Product modified" });
+  } catch (error) {
+    res.status(404).json(error.message);
+  }
+};
+
+
 module.exports = {
   getProductById,
   loadProductsInDB,
   getProducts,
   getProductByName,
   postProduct,
+  putProduct,
 };
