@@ -51,21 +51,23 @@ const createPayment = async (req, res, next) => {
     const newPayment = await Payment.create({
       purchase_date: new Date(), // Fecha de creación del pago
       total_purchase: totalprice, // Total de la orden
-      payment_status: "approved", // Estado del pago
-      //id_payment: id.replace(/["-]/g, ""),
       active: true, // Estado activo del pago
     });
-    console.log(" este es el newPayment :", newPayment);
+    //console.log(" este es el newPayment :", newPayment);
+
     // Asociar el pago a la compra
     await purchase.update({ paymentId: newPayment.id });
+
     // console.log("esta es la order actualizada: ", order);
     await newPayment.update({
       purchaseId: purchase.id,
       userId: purchase.userId,
     });
-    console.log("este es el pago updated 1: ", newPayment);
+    //console.log("este es el pago updated 1: ", newPayment);
+
     //obtento usuario asociado al pago
     const user = await User.findByPk(newPayment.userId);
+
     //obtengo los productos de las ordenes efectivamente compradas y abonadas
     const ordersDetail = await Orderdetail.findAll({
       where: {
@@ -73,11 +75,13 @@ const createPayment = async (req, res, next) => {
       },
       include: [Product],
     });
-    // actualizo la variable idPaymentCreated
 
+    // actualizo la variable idPaymentCreated
     idPaymentCreated = newPayment.id;
+
     //actualizo el campo purchase_history en user
     const currentPurchaseHistory = user.purchase_history;
+
     //revisar de ver si se puede poner el objeto completo
 
     const updatedPurchaseHistory = ordersDetail.map((o) => ({
@@ -110,16 +114,12 @@ async function paymentNotification(req, res) {
   try {
     if (payment.type === "payment") {
       const data = await mercadopago.payment.findById(payment["data.id"]);
-      console.log("a tomar", data);
-      console.log("Data body:", data.body);
+      //console.log("Data body:", data.body);
       if (data.body.status === "rejected") {
         const rejectedPayment = await Payment.update(
           {
-            //id_payment: data.body.id,
             date_approved: data.body.date_approved,
-            // authorization_code: data.body.authorization_code,
             mp_id_order: data.body.order.id,
-            //fee_mp: data.body.fee_details[0].amount,
             payment_status: "failed",
           },
           {
@@ -127,6 +127,24 @@ async function paymentNotification(req, res) {
               id: idPaymentCreated,
             },
           }
+        );
+        const failedPurchase = await Purchase.update(
+          {
+            purchase_status: "failed",
+          },
+          { where: { paymentId: idPaymentCreated } }
+        );
+
+        const updatedPurchaseInstance = await Purchase.findOne({
+          where: { paymentId: idPaymentCreated },
+        });
+        const purchaseId = updatedPurchaseInstance.id;
+
+        const updatedOrder = await Orderdetail.update(
+          {
+            order_status: "inactive",
+          },
+          { where: { purchaseId: purchaseId } }
         );
       } else {
         const updatedPayment = await Payment.update(
@@ -144,7 +162,13 @@ async function paymentNotification(req, res) {
             },
           }
         );
-        console.log("pago completo: ", updatedPayment);
+        const updatedPurchase = await Purchase.update(
+          {
+            purchase_status: "success",
+          },
+          { where: { paymentId: idPaymentCreated } }
+        );
+        //console.log("pago completo: ", updatedPayment);
       }
     }
     res.sendStatus(204);
@@ -154,4 +178,16 @@ async function paymentNotification(req, res) {
   }
 }
 
-module.exports = { createPayment, paymentNotification };
+//!GET payments
+const getAllPayments = async (req, res) => {
+  try {
+    const allPayments = await Payment.findAll({
+      include: [{ model: Purchase }, { model: User }],
+    });
+    res.status(200).send(allPayments);
+  } catch (e) {
+    res.status(404).json(e);
+  }
+};
+
+module.exports = { createPayment, paymentNotification, getAllPayments };
