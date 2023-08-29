@@ -10,9 +10,15 @@ const payments = Router();
 
 //payments.get("/", getAllPayments);
 payments.post("/generate", createPayment);
-payments.get("/success", (req, res) => res.send("success"));
-payments.get("/failure", (req, res) => res.send("failure"));
-payments.get("/pending", (req, res) => res.send("pending"));
+payments.get("/success", (req, res) => {
+  res.redirect("https://stringsandkeys.up.railway.app/");
+});
+payments.get("/failure", (req, res) => {
+  res.redirect("https://stringsandkeys.up.railway.app/");
+});
+payments.get("/pending", (req, res) => {
+  res.redirect("https://stringsandkeys.up.railway.app/");
+});
 payments.post("/notification", paymentNotification);
 payments.get("./", getAllPayments);
 
