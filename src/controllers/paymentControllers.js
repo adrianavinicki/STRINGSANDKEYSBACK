@@ -33,9 +33,12 @@ const createPayment = async (req, res, next) => {
         },
       ],
       back_urls: {
-        success: `${BACK_URL}/success`,
+        /* success: `${BACK_URL}/success`,
         failure: `${BACK_URL}/failure`,
-        pending: `${BACK_URL}/pending`,
+        pending: `${BACK_URL}/pending`,*/
+        success: BACK_URL,
+        failure: BACK_URL,
+        pending: BACK_URL,
       },
       auto_return: "approved",
       binary_mode: true,
