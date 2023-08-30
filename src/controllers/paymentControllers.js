@@ -1,4 +1,11 @@
-const { Payment, Purchase, User, Orderdetail, Product } = require("../db");
+const {
+  Payment,
+  Purchase,
+  User,
+  Orderdetail,
+  Product,
+  Delivery,
+} = require("../db");
 const { onlyDateCheck } = require("../helpers/validation");
 
 require("dotenv").config();
@@ -33,9 +40,6 @@ const createPayment = async (req, res, next) => {
         },
       ],
       back_urls: {
-        /* success: `${BACK_URL}/success`,
-        failure: `${BACK_URL}/failure`,
-        pending: `${BACK_URL}/pending`,*/
         success: BACK_URL,
         failure: BACK_URL,
         pending: BACK_URL,
@@ -165,13 +169,26 @@ async function paymentNotification(req, res) {
             },
           }
         );
+
+        const callPurchase = await Purchase.findOne({
+          where: { paymentId: idPaymentCreated },
+        });
+        console.log("callPurchase: ", callPurchase);
+
+        const newDelivery = await Delivery.create({
+          delivered_date: new Date(), // Fecha actual
+          delivery_status: "delivered",
+          purchaseId: callPurchase.id, // Utiliza el purchaseId del pago aprobado
+          userId: callPurchase.userId, // Utiliza el userId del pago aprobado
+        });
+
         const updatedPurchase = await Purchase.update(
           {
             purchase_status: "success",
+            deliveryId: newDelivery.id,
           },
           { where: { paymentId: idPaymentCreated } }
         );
-        //console.log("pago completo: ", updatedPayment);
       }
     }
     res.sendStatus(204);
