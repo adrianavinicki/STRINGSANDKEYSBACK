@@ -1,7 +1,7 @@
 const { Router } = require("express");
 require("dotenv").config();
 
-const { createPurchase, getPurchases } = require("../controllers/purchaseControllers");
+const { createPurchase, getPurchases , dataStats } = require("../controllers/purchaseControllers");
 // const {
 //   getById,
 //   getOrderByProperties,
@@ -13,5 +13,6 @@ const router = Router();
 // router.get("/:id", getById); // falta probar ruta
 router.post("/create", createPurchase);
 router.get("/getAllPurchases", getPurchases);
+router.get("/dataStats", dataStats);
 
 module.exports = router;
