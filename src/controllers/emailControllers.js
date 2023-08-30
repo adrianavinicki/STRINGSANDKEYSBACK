@@ -24,7 +24,8 @@ const emailNotification = async (req, res) => {
             from: "stringsandkeysmusicstore@gmail.com",
             to: userMail,
             subject: titulo,
-            text: contenido,
+            // text: contenido,
+            html: contenido,
         }
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
