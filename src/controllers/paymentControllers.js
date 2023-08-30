@@ -12,6 +12,7 @@ require("dotenv").config();
 const { ACCESS_TOKEN, BACK_URL, BACK_URL_NOTIFICATION, PORT } = process.env;
 
 const mercadopago = require("mercadopago");
+const { updateProductQuantities } = require("./stockControllers");
 
 //  Agrega credenciales
 mercadopago.configure({
@@ -189,6 +190,9 @@ async function paymentNotification(req, res) {
           },
           { where: { paymentId: idPaymentCreated } }
         );
+
+        // Llama al controlador para actualizar las cantidades de productos
+        await updateProductQuantities(callPurchase.id);
       }
     }
     res.sendStatus(204);
