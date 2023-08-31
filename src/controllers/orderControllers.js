@@ -123,7 +123,6 @@ const createOrder = async (req, res, next) => {
 
     for (const detail of Orders) {
       const { quantity, productId, userId } = detail;
-      // userId esta hardcodeado descomentar la linea 126 y 129 cuando esten los users y comentar las hardocodeadas
 
       const user = await User.findByPk(userId);
       const product = await Product.findByPk(productId);
@@ -132,6 +131,10 @@ const createOrder = async (req, res, next) => {
         return res
           .status(404)
           .json({ message: "User or Product was not found" });
+      }
+
+      if (product.quantity < quantity) {
+        return res.status(400).json({ message: "Insufficient stock" });
       }
 
       const createdOrder = await Orderdetail.create({

@@ -74,4 +74,35 @@ const createPurchase = async (req, res, next) => {
     }
 };
 
-module.exports = { createPurchase };
+const getPurchases = async (req, res) => {
+    try {
+        const response = await User.findAll({ include: [Purchase] });
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+}
+
+const dataStats = async(req, res) => {
+    try {
+        const purchasess = await Purchase.findAll({
+            include: [
+                {
+                    model: User, // Incluir los datos del usuario relacionado
+                },
+                {
+                    model: Orderdetail, // Incluir los detalles de la orden relacionados
+                    include: [Product], // Incluir los productos de cada detalle
+                },
+            ],
+        });
+        
+        return res.status(200).json({purchasess}); 
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+
+}
+
+
+module.exports = { createPurchase, getPurchases , dataStats };
