@@ -77,25 +77,19 @@ const createPurchase = async (req, res, next) => {
 const getPurchases = async (req, res) => {
 
   const {condition} = req.query;
-
-  if(condition === "ventas"){
+  
     try {
-      const response = await Purchase.findAll({include: [User]});
-      return res.status(200).json(response);
-      
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({message: "hubo un error en el servidor, intente mas tarde"})
-    }
-  }
+        if(condition === "ventas"){
+            const response = await Purchase.findAll({include: [User]});
+            return res.status(200).json(response);
+        }
 
-    try {
         const response = await User.findAll({ include: [Purchase] });
         return res.status(200).json(response);
     } catch (error) {
         return res.status(400).json({ error: error.message });
-    }
-}
+    };
+};
 
 const dataStats = async(req, res) => {
     try {
