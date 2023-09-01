@@ -2,7 +2,7 @@ const { Router } = require("express");
 require("dotenv").config();
 
 
-const { createUser, getUserByMail, putUser, getAllUsers, putUserDos } = require("../controllers/userControllers.js");
+const { createUser, getUserByMail, putUser, getAllUsers, putUserDos, putUserTres } = require("../controllers/userControllers.js");
 const {getUsersNameHandler} = require("../handlers/userHandler.js")
 
 
@@ -20,6 +20,7 @@ const users = Router();
 users.get("/", getAllUsers);
 users.put("/update", putUser);
 users.put("/updateDos/:id", putUserDos);
+users.put("/updateTres/:id", putUserTres);
 users.post("/create", createUser);
 users.get("/name", getUsersNameHandler);
 

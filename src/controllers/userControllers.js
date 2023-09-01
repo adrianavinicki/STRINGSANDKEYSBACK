@@ -141,6 +141,25 @@ const putUserDos = async (req, res) => {
   };
 };
 
+const putUserTres = async (req, res) => {
+  const {id} = req.params;
+  try {
+    const userDos = await User.findOne({
+      where: {
+        id: id,
+      },
+    });
+    if(!userDos) res.status(400).json({error: error.message});
+    const status = userDos.user_status === true ? false : true
+    const modifiedUser = await userDos.update({
+      user_status: status
+    });
+    if(modifiedUser) res.status(200).json({message: "User status modified"})
+  } catch (error) {
+    throw new Error(error.message)
+  };
+};
+
 const getAllUsers = async (req, res) => {
   try {
     const response = await User.findAll();
@@ -172,4 +191,5 @@ module.exports = {
   getAllUsers,
   getUsersName,
   putUserDos,
+  putUserTres,
 };
