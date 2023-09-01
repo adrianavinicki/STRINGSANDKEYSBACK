@@ -11,6 +11,7 @@ const {
 } = process.env;
 const axios = require("axios");
 const { User } = require("../db.js");
+const { Op } = require("sequelize");
 
 // Lo que hace esta ruta es:
 // 1. Valida que estén todos los datos required del modelo en el body de la request.
@@ -115,8 +116,80 @@ const putUser = async (req, res, next) => {
   }
 };
 
+const putUserDos = async (req, res) => {
+  const {id} = req.params;
+  try {
+    const userDos = await User.findOne({
+      where: {
+        id: id,
+      },
+    });
+    if(!userDos) res.status(400).json({error: error.message});
+    const roll = userDos.role_id === "admin" ? "client" : "admin"
+    const modifiedUser = await userDos.update({
+      role_id: roll
+    });
+    if(modifiedUser) res.status(200).json({message: "User rol modified"})
+
+    /* if(!userDos) res.status(400).json({error: error.message});
+    const userModifiedDos = await userDos.update({
+      role_id :!role_id
+    })
+    if(userModifiedDos) res.status(200).json({message: "User rol modified"}) */
+  } catch (error) {
+    throw new Error(error.message)
+  };
+};
+
+const putUserTres = async (req, res) => {
+  const {id} = req.params;
+  try {
+    const userDos = await User.findOne({
+      where: {
+        id: id,
+      },
+    });
+    if(!userDos) res.status(400).json({error: error.message});
+    const status = userDos.user_status === true ? false : true
+    const modifiedUser = await userDos.update({
+      user_status: status
+    });
+    if(modifiedUser) res.status(200).json({message: "User status modified"})
+  } catch (error) {
+    throw new Error(error.message)
+  };
+};
+
+const getAllUsers = async (req, res) => {
+  try {
+    const response = await User.findAll();
+  res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({error: error.message})
+  }
+};
+
+const getUsersName = async (name) => {
+  try {
+    let userName = await User.findAll({
+      where: {
+        first_name: {
+          [Op.iLike]: `%${name}%`,
+        },
+      },
+    });
+    return userName;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 module.exports = {
   createUser,
   getUserByMail,
   putUser,
+  getAllUsers,
+  getUsersName,
+  putUserDos,
+  putUserTres,
 };
