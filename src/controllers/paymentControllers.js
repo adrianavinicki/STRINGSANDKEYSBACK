@@ -96,6 +96,7 @@ const createPayment = async (req, res, next) => {
       productId: o.productId,
       price: o.price,
       quantity: o.quantity,
+      date: o.order_date,
     }));
 
     const mergedPurchaseHistory = [
