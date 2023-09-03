@@ -1,4 +1,4 @@
-const { Purchase, User, Orderdetail, Product } = require("../db");
+const { Purchase, User, Orderdetail, Product, Payment } = require("../db");
 
 //para crear la orden hay que obtener el id de detaiOrders, sus precios y cantides. Para luego relacionar las DetailOrders con su respectiva order y obtener el totalPrice.
 const createPurchase = async (req, res, next) => {
@@ -80,7 +80,11 @@ const getPurchases = async (req, res) => {
   
     try {
         if(condition === "ventas"){
-            const response = await Purchase.findAll({include: [User]});
+            const response = await Purchase.findAll({include: [
+                {model:User,},
+                {model: Payment},
+                {model: Orderdetail, include:[Product]},
+            ]});
             return res.status(200).json(response);
         }
 
