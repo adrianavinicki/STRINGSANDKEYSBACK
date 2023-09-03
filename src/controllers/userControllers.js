@@ -173,7 +173,7 @@ const getUsersName = async (name) => {
   try {
     let userName = await User.findAll({
       where: {
-        first_name: {
+        last_name: {
           [Op.iLike]: `%${name}%`,
         },
       },
