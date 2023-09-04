@@ -29,18 +29,58 @@ const loadProductsInDB = async (req, res, next) => {
 };
 
 const getProductByName = async (name) => {
-  try {
-    let productName = await Product.findAll({
-      where: {
-        name: {
-          [Op.iLike]: `%${name}%`,
+  const nameId = parseInt(name)
+  if (!isNaN(nameId)) {
+    try {
+      let userName = await Product.findAll({
+        where: {
+          id: name,
         },
+      });
+      return userName;
+    } catch (error) {
+      throw new Error(error.message);
+    };
+  } else {
+  try {
+    let userName = await Product.findAll({
+      where: {
+        [Op.or]: [
+          {
+            brand: {
+              [Op.iLike]: `%${name}%`,
+            },
+          },
+          {
+            category: {
+              [Op.iLike]: `%${name}%`,
+            },
+          },
+          {
+            name: {
+              [Op.iLike]: `%${name}%`,
+            },
+          },
+        ],
       },
     });
-    return productName;
+    return userName;
   } catch (error) {
     throw new Error(error.message);
-  }
+};
+};
+  // try {
+  //   let productName = await Product.findAll({
+  //     where: {
+  //       name: {
+  //         [Op.iLike]: `%${name}%`,
+  //       },
+  //     },
+  //   });
+  //   return productName;
+  // } catch (error) {
+  //   throw new Error(error.message);
+  // }
 };
 
 const getProductById = async (id) => {
