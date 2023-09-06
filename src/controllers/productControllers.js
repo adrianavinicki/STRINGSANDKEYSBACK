@@ -3,7 +3,7 @@ const listProducts = require("../data/MusicProducts.js");
 require("dotenv").config();
 const { Op } = require("sequelize");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } = process.env;
-const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
   cloud_name: CLOUDINARY_CLOUD_NAME,
@@ -95,9 +95,20 @@ const putProduct = async (req, res, next) => {
   } = req.body;
   const { id } = req.params;
   try {
+
+    let imagenUpdate = null;
+    if(req.file){
+      const showImage = await cloudinary.uploader.upload(req.file.path, {
+        public_id: name,
+      });
+      imagenUpdate = showImage.secure_url;
+    };
+
     const product = await Product.findByPk(id);
     if (!product) res.status(404).json({ message: "Product does not exist" });
-    const productModified = await product.update({
+
+    if(!imagenUpdate){
+     const productModified = await product.update({
       name,
       brand,
       category,
@@ -107,8 +118,23 @@ const putProduct = async (req, res, next) => {
       image,
       product_status,
     });
-    if (productModified) res.status(201).json({ message: "Product modified" });
+    if (productModified) res.status(201).json({ message: "Product modified" }); 
+    } else {
+      const productModified = await product.update({
+        name,
+        brand,
+        category,
+        description,
+        quantity,
+        price,
+        image: imagenUpdate,
+        product_status,
+      });
+      if (productModified) res.status(201).json({ message: "Product modified" });
+    }
+    
   } catch (error) {
+    console.log(error)
     res.status(404).json(error.message);
   }
 };

@@ -19,6 +19,6 @@ const router = Router();
 router.get('/:id', getProductByIdHandler);
 router.get("/", getAllProducts);
 router.post("/create", upload.single("image"), postProductHandler);
-router.put("/update/:id", putProduct);
+router.put("/update/:id", upload.single("image"), putProduct);
 
 module.exports = router;
