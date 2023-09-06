@@ -170,18 +170,41 @@ const getAllUsers = async (req, res) => {
 };
 
 const getUsersName = async (name) => {
+  const nameId = parseInt(name)
+  if (!isNaN(nameId)) {
+    try {
+      let userName = await User.findAll({
+        where: {
+          id: name,
+        },
+      });
+      return userName;
+    } catch (error) {
+      throw new Error(error.message);
+    };
+  } else {
   try {
     let userName = await User.findAll({
       where: {
-        last_name: {
-          [Op.iLike]: `%${name}%`,
-        },
+        [Op.or]: [
+          {
+            last_name: {
+              [Op.iLike]: `%${name}%`,
+            },
+          },
+          {
+            email: {
+              [Op.iLike]: `%${name}%`,
+            },
+          },
+        ],
       },
     });
     return userName;
   } catch (error) {
     throw new Error(error.message);
-  }
+  };
+};
 };
 
 module.exports = {
