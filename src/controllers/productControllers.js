@@ -153,6 +153,25 @@ const putProduct = async (req, res, next) => {
   }
 };
 
+const changeProductStatus = async (req, res) => {
+  const {id} = req.params;
+  try {
+    const productStatus = await Product.findOne({
+      where: {
+        id: id,
+      },
+    });
+    if(!productStatus) res.status(400).json({error: error.message});
+    const status = productStatus.product_status === true ? false : true
+    const modifiedProduct = await productStatus.update({
+      product_status: status
+    });
+    if(modifiedProduct) res.status(200).json({message: "Product status modified"})
+  } catch (error) {
+    throw new Error(error.message)
+  };
+};
+
 
 module.exports = {
   getProductById,
@@ -161,4 +180,5 @@ module.exports = {
   getProductByName,
   postProduct,
   putProduct,
+  changeProductStatus,
 };
