@@ -12,7 +12,7 @@ const storageCloud = new CloudinaryStorage({
 const upload = multer({ storage: storageCloud});
 
 const {getAllProducts, getProductByIdHandler, postProductHandler} = require('../handlers/productHandler');
-const { putProduct } = require("../controllers/productControllers")
+const { putProduct, changeProductStatus } = require("../controllers/productControllers")
 
 const router = Router();
 
@@ -20,5 +20,6 @@ router.get('/:id', getProductByIdHandler);
 router.get("/", getAllProducts);
 router.post("/create", upload.single("image"), postProductHandler);
 router.put("/update/:id", upload.single("image"), putProduct);
+router.put("/update/status/:id", changeProductStatus)
 
 module.exports = router;
