@@ -19,10 +19,26 @@ mercadopago.configure({
   access_token: ACCESS_TOKEN,
 });
 
+const nodemailer = require('nodemailer');
+const { EMAIL_USER, EMAIL_PASS } = process.env;
+
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+      user: EMAIL_USER ,
+      pass: EMAIL_PASS
+  }
+});
+
 let idPaymentCreated;
+
+let userData;
+let cartDetail;
+let purchaseData;
 
 const createPayment = async (req, res, next) => {
   const { purchaseId } = req.body;
+  const {cart} = req.body;
   console.log("este es el body :", req.body);
   try {
     // Verificar si la purchase existe
@@ -86,6 +102,9 @@ const createPayment = async (req, res, next) => {
 
     // actualizo la variable idPaymentCreated
     idPaymentCreated = newPayment.id;
+    userData = user;
+    cartDetail= cart;
+    purchaseData= purchase
 
     //actualizo el campo purchase_history en user
     const currentPurchaseHistory = user.purchase_history;
@@ -194,6 +213,84 @@ async function paymentNotification(req, res) {
 
         // Llama al controlador para actualizar las cantidades de productos
         await updateProductQuantities(callPurchase.id);
+
+        const content = 
+          `<html>
+            <body style="text-align: center;">
+              <h1 style="color: black;">¡Gracias por tu compra, ${
+                userData.first_name
+              }!</h1>
+              <p style="color: black;">Te agradecemos por tu reciente compra en Strings And Keys. Debajo puedes ver los detalles de tu compra:</p>
+              <div>
+                <table 
+                  align="center"
+                  style= "border : 1px solid black; width: fit-content; border-collapse: collapse ; margin-top: 20px ; margin-bottom: 20px;"
+                >
+                  
+                  <tr>
+                    <th
+                      align="center"          
+                      style= "border : 1px solid black; width: fit-content ; padding: 10px;"
+                    >Cantidad</th>
+                    <th
+                      align="center"          
+                      style= "border : 1px solid black; width: fit-content ; padding: 10px;"
+                    >Producto</th>
+                    <th
+                      align="center"          
+                      style= "border : 1px solid black; width: fit-content ; padding: 10px;"
+                    >Importe</th>
+                  </tr>
+                  ${cartDetail.map(
+                    (e) =>
+                      `<tr>
+                      <td
+                        align="center"         
+                        style= "border : 1px solid black; width: fit-content ; padding: 10px;"
+                      >${e.quantity}</td>
+                      <td
+                        align="center"         
+                        style= "border : 1px solid black; width: fit-content ; padding: 10px;"
+                      >${e.name}</td>
+                      <td
+                        align="center"         
+                        style= "border : 1px solid black; width: fit-content ; padding: 10px;" 
+                      >$${e.price * e.quantity}</td>
+                    </tr>`
+                  )}
+                  <tr>
+                    <th
+                        align="center"             
+                        style= "border : 1px solid black; width: fit-content ; padding: 10px;"
+                    >Total</th>
+                    <td
+                        align="center"
+                        colspan="2"
+                        style= "border : 1px solid black; width: fit-content ; padding: 10px;"
+                    >$${purchaseData.totalprice}</td>
+                  </tr>
+                </table>
+              </div>
+              <img src="https://res.cloudinary.com/dhit7strk/image/upload/v1693428861/MAIL_p2qzg7.png" alt="Imagen de agradecimiento" style="display: block; margin: 0 auto;"/>
+            </body>
+          </html>`
+      ;
+      const mailOptions = {
+        from: "stringsandkeysmusicstore@gmail.com",
+        to: userData.email,
+        subject: "Gracias por tu compra!",
+        // text: contenido,
+        html: content,
+      };
+  
+  
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            throw new Error(error.message);
+        } else {
+            res.status(200).send("Email Sent" + info)
+        }
+      })
       }
     }
     res.sendStatus(204);
